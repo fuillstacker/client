@@ -1,0 +1,29 @@
+version: '3'
+services:
+  nginx-client:
+    image: nginx:1.17.8
+    volumes:
+      - ./client
+    networks:
+      net:
+        ipv4_address: 192.168.235.2
+  nginx-server:
+    image: nginx:1.17.8
+    volumes:
+      - ./server
+    networks:
+      net:
+        ipv4_address: 192.168.235.3
+  node-server:
+    image: node:16.20.2-fpm
+    volumes:
+      - ./server
+    networks:
+      net:
+        ipv4_address: 192.168.235.2
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.235.0/9

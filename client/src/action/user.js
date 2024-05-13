@@ -7,7 +7,7 @@ export const register = async (email, password) => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.post('https://back-2-sw8c.onrender.com/api/register', {
+            const response = await axios.post('https://cloudstoragec.com/api/register', {
                 email,
                 password
             })
@@ -24,7 +24,7 @@ export const login = (email, password) => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.post('https://back-2-sw8c.onrender.com/api/login', {
+            const response = await axios.post('https://cloudstoragec.com/api/login', {
                 email,
                 password
             })
@@ -43,7 +43,7 @@ export const auth = () => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.get('https://back-2-sw8c.onrender.com/api/auth',
+            const response = await axios.get('https://cloudstoragec.com/api/auth',
                 { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             )
 
@@ -65,7 +65,7 @@ export const uploadAvatar = (file) => {
             dispatch(showLoader())
             const formData = new FormData()
             formData.append('file', file)
-            const response = await axios.post(`https://back-2-sw8c.onrender.com/api/files/avatar`, formData,
+            const response = await axios.post(`https://cloudstoragec.com/api/files/avatar`, formData,
                 { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             )
             dispatch(setUser(response.data))
@@ -81,7 +81,7 @@ export const deleteAvatar = () => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.delete(`https://back-2-sw8c.onrender.com/api/files/avatar`,
+            const response = await axios.delete(`https://cloudstoragec.com/api/files/avatar`,
                 { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             )
 
@@ -93,3 +93,4 @@ export const deleteAvatar = () => {
         }
     }
 }
+

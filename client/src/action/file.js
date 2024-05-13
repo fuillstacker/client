@@ -7,15 +7,15 @@ export const getFiles = (dirId, sort) => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            let url = 'https://back-2-sw8c.onrender.com/api/files'
+            let url = 'https://cloudstoragec.com/api/files'
             if(dirId) {
-                url = `https://back-2-sw8c.onrender.com/api/files?parent=${dirId}`
+                url = `https://cloudstoragec.com/api/files?parent=${dirId}`
             }
             if(sort) {
-                url = `https://back-2-sw8c.onrender.com/api/files?sort=${sort}`
+                url = `https://cloudstoragec.com/back/api/files?sort=${sort}`
             }
             if (dirId && sort) {
-                url = `https://back-2-sw8c.onrender.com/api/files?parent=${dirId}&sort=${sort}`
+                url = `https://cloudstoragec.com/api/files?parent=${dirId}&sort=${sort}`
             }
             const response = await axios.get(url, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -33,7 +33,7 @@ export const createDir = (dirId, name) => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.post(`https://back-2-sw8c.onrender.com/api/files`, {
+            const response = await axios.post(`https://cloudstoragec.com/api/files`, {
                 name,
                 type: 'dir',
                 parent: dirId
@@ -61,7 +61,7 @@ export function upload(file, dirId) {
             const uploadFile = {name: file.name, progress: 0, id: Date.now()}
             dispatch(showUploader())
             dispatch(addUploadFile(uploadFile))
-            const response = await axios.post(`https://back-2-sw8c.onrender.com/api/files/upload`, formData, {
+            const response = await axios.post(`https://cloudstoragec.com/api/files/upload`, formData, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
             });
             dispatch(addFiles(response.data))
@@ -74,7 +74,7 @@ export function upload(file, dirId) {
 }
 
 export const download = async (file) => {
-    const response = await fetch(`https://back-2-sw8c.onrender.com/api/files/download?id=${file._id}`, {
+    const response = await fetch(`https://cloudstoragec.com/api/files/download?id=${file._id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -95,7 +95,7 @@ export const deleteFile = (file, dirId) => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.delete(`https://back-2-sw8c.onrender.com/api/files?id=${file._id}`, {
+            const response = await axios.delete(`https://cloudstoragec.com/api/files?id=${file._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -114,7 +114,7 @@ export const searchFiles = (search) => {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.get(`https://back-2-sw8c.onrender.com/api/files/search?search=${search}`, {
+            const response = await axios.get(`https://cloudstoragec.com/api/files/search?search=${search}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
